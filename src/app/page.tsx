@@ -1,6 +1,7 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
+import { projects } from "../data";
 
 export default function ProjectsPage() {
   const [openModal, setOpenModal] = useState<number | null>(null);
@@ -212,23 +213,28 @@ export default function ProjectsPage() {
 
       {/* Projects Section */}
       <section id="projects" className="max-w-4xl mx-auto py-24 px-4 border-b border-gray-100">
-        <h2 className="text-2xl font-bold mb-8">Research and Project Work</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col hover:shadow-lg transition">
-            <h3 className="text-lg font-semibold mb-2">Stock Market Prediction with Economic Indicators</h3>
-            <p className="text-gray-600 mb-2">Developed ML models (Logistic Regression, SVM, XGBoost) using 10+ years of stock and macroeconomic data via World Bank API.</p>
-          </div>
-          <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col hover:shadow-lg transition">
-            <h3 className="text-lg font-semibold mb-2">Market Crash Prediction via LPPL Modeling</h3>
-            <p className="text-gray-600 mb-2">Applied LPPL theory to analyze speculative bubbles, enhancing early warning systems for market instability.</p>
-          </div>
-          <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col hover:shadow-lg transition">
-            <h3 className="text-lg font-semibold mb-2">Revolut Teardown</h3>
-            <p className="text-gray-600 mb-2">Download my detailed case study on Revolut's product, strategy, and growth as a PPTX presentation.</p>
-            <a href="/Revolut_Case_Study.pptx" download className="text-cyan-600 font-semibold hover:underline mt-2">Download Case Study</a>
-          </div>
-        </div>
-      </section>
+  <h2 className="text-2xl font-bold mb-8">Research and Project Work</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+    {projects.map((project, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col hover:shadow-lg transition"
+      >
+        <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+        <p className="text-gray-600 mb-2">{project.description}</p>
+        {project.link !== "#" && (
+          <a
+            href={project.link}
+            download={project.link.endsWith(".pptx")}
+            className="text-cyan-600 font-semibold hover:underline mt-2"
+          >
+            {project.link.endsWith(".pptx") ? "Download Case Study" : "View Project"}
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Skillset Section */}
       <section id="skillset" className="max-w-5xl mx-auto py-24 px-4 border-b border-gray-100 font-sans">
