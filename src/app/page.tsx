@@ -1,7 +1,8 @@
 'use client';
 import { useState } from "react";
 import Image from "next/image";
-import { projects } from "../data";
+import { projects } from "./data";
+
 
 export default function ProjectsPage() {
   const [openModal, setOpenModal] = useState<number | null>(null);
