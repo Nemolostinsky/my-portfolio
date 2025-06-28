@@ -4,7 +4,7 @@ import Image from "next/image";
 import { projects } from "./data";
 
 
-export default function ProjectsPage() {
+export default function Page() {
   const [openModal, setOpenModal] = useState<number | null>(null);
 
   // Experience data
